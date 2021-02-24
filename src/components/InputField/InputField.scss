@@ -1,0 +1,37 @@
+// css goes here
+input {
+  background-color: white;
+  // border-radius: 50px !important;
+  padding: 12px 15px 12px 15px !important;
+  width: 100%;
+  margin-bottom: 3px;
+  box-sizing: border-box;
+  border: none !important;
+  // border: 1px solid #F3E5F5 !important;
+  font-size: 16px !important;
+  color: #000 !important;
+  font-weight: 400;
+  border-bottom: 1px solid #D6A7FF !important;
+  &:focus {
+    box-shadow: none !important;
+    outline-width: 0;
+    font-weight: 400
+  }
+}
+.invalid_input{
+  height: 20px;
+  &_error {
+    font-size: 12px;
+    color: #ed5249;
+    background: none;
+  }
+}
+.search-input {
+position: absolute;
+height: 25px;
+border: 1px solid rgba(0, 0, 0, 0.4) !important;
+border-radius: 0 !important;
+margin: 0 !important;
+margin-left: -62px !important;
+margin-top: -8px !important;
+}

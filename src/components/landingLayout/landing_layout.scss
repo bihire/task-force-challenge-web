@@ -1,0 +1,29 @@
+
+::before,
+ ::after {
+  box-sizing: inherit;
+}
+.landing_layout {
+    // position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1C2834 0%,#1C2834 50%,#1C2834 50%,white 50%,white 100%); /* W3C */
+    &_container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        height: 100vh;
+        display: grid;
+        position: relative;
+        grid-template-columns: 1fr;
+        grid-template-rows: 20vh minmax(0, auto);
+        &_top {
+            grid-row: 1/2;
+        }
+        &_inner {
+            grid-row: 2/2;
+            background: blue;
+        }
+
+    }
+}
