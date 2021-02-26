@@ -1,14 +1,15 @@
 // import logo from './logo.svg';
 import React, { useState } from 'react';
-import '../../App.css';
 import './form.scss'
 import InputField from '../../components/InputField'
 import Button from '../../components/Button'
 import {FaChevronRight } from 'react-icons/fa'
 import { addAction } from '../../redux/action/addUser/action'
 import { connect } from 'react-redux';
+import TextArea from '../../components/TextArea';
+import NativeSelects from '../../components/customSelect';
 
-function Register(props) {
+function AddTask(props) {
     const [email, setEmail] = useState('');
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
@@ -24,7 +25,6 @@ function Register(props) {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(name)
         if (name === 'email') {
             setEmail(value)
         }
@@ -101,23 +101,74 @@ function Register(props) {
         }
     }
     return (
-        <div class="container">
-
-            <div class="card">
-                
-                <div class="card-form">
-                    {/* <div class="logo">
-            <div class="logo_text">
-              logo
-            </div>
-           </div> */}
-                    <div class="welcome-info">
-                        {/* <p class="forget back-to-login"><a href="\#" onClick={changeForm}> <FaChevronLeft class="submit_icon" /> Login</a></p> */}
-                        <p class="welcome">Let's Add a new user</p>
-                        {/* <img src={imgSVG} alt="welcome image" height="100" /> */}
+        <div class="add_task">
+            <div class="add_task_card">
+                <div className='add_task_card_title'>
+                    New Task
+                </div>
+                <div className='add_task_card_image'>
+                    <div className='add_task_card_image_title'>
+                        Add image
                     </div>
+                    <div className='add_task_card_image_box'>
+                        <div className='add_task_card_image_box_message'>
+                            Tap to add an image
+                        </div>
+                    </div>
+                </div>
+                <div className='add_task_card_image'>
+                    <div className='add_task_card_image_title'>
+                        Title
+                    </div>
+                    <div className='add_task_card_task_title'>
+                        <InputField
+                            type="task_title"
+                            name="task_title"
+                            id="task_title"
+                            placeholder="task_title(140 characters)"
+                            // value={email}
+                            // error={emailError}
+                            // onChange={handleChange}
+                            // onKeyUp={checkEmailInput}
+                            // onFocus={resetInput}
+                        />
+                    </div>
+                </div>
+                <div className='add_task_card_image'>
+                    <div className='add_task_card_image_title'>
+                        Description
+                    </div>
+                    <div className='add_task_card_taskTitle'>
+                        <TextArea
+                            type="description"
+                            name="description"
+                            id="description"
+                            placeholder="240 characters"
+                        // value={email}
+                        // error={emailError}
+                        // onChange={handleChange}
+                        // onKeyUp={checkEmailInput}
+                        // onFocus={resetInput}
+                        />
+                    </div>
+                </div>
+                <div className='add_task_card_image'>
+                    <div className='add_task_card_image_title'>
+                        Description
+                    </div>
+                    <div className='add_task_card_task_select'>
+                        <NativeSelects />
+                    </div>
+                </div>
+                <div className='add_task_card_image_submit'>
+                    <Button className='createTaskBtn' value='CREATE TASK' />
+                </div>
+                {/* <div class="card-form">
+                    <div class="welcome-info">
+                        
+                    </div> */}
 
-                    <div class="slide signIn">
+                    {/* <div class="slide signIn">
                         <div class="fields signInInputs">
                             <InputField
                                 type="email"
@@ -193,7 +244,7 @@ function Register(props) {
                     </div>
 
 
-                </div>
+                </div> */}
 
             </div>
 
@@ -215,4 +266,4 @@ const mapDispatchToProps = (dispatch) => ({
     addUser: (data) => dispatch(addAction(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTask);

@@ -1,27 +1,58 @@
 // body, html, #root {
 //     height: 100vh;
 // }
-.MainEntry {
-    height: 100vh;
+.landing_page {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: #FFF;
+    display: grid;
+    grid-template-rows: 60px minmax(0, 1fr);
+    // border: 1px red solid;
+    &_header {
+        grid-row: 1/2;
+        
+    }
+    &_container{
+        overflow: auto;
+        max-height: 100%;
+        grid-row: 2/2;
+        display: grid;
+        grid-template-rows: 160px minmax(0, 1fr);
+        &_cards {
+            grid-row: 1/2;
+            background: #F4F5F6;
+            padding: 50px 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            // grid-template-rows: 1fr;
+            grid-gap: 20px;
+        }
+        &_content{
+            grid-row: 2/2;
+            padding: 10px;
+            // background: green;
+        }
+    }
     &_header_image {
         height: 200px;
         display: flex;
         justify-content: center;
         // background: blue;
     }
-    &_container {
-        margin: auto;
-        max-width: 600px;
-        width: 90%;
-        padding: 40px 20px;
-        min-height: 100vh;
-        &_title {
-            font-size: 200%;
-            margin-bottom: 70px;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
-        }
-    }
+    // &_container {
+    //     margin: auto;
+    //     max-width: 600px;
+    //     width: 90%;
+    //     padding: 40px 20px;
+    //     min-height: 100vh;
+    //     &_title {
+    //         font-size: 200%;
+    //         margin-bottom: 70px;
+    //         font-family: 'Roboto', sans-serif;
+    //         font-weight: 700;
+    //     }
+    // }
 }
 
 .float{

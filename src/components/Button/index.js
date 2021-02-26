@@ -9,9 +9,9 @@ const Button = ({
   icon,
   onClick,
 }) => (
-  <div className="row justify-content-center my-3 px-3" onClick={onClick}>
-    <div class="submit signinSubmit">
-      <span class="submit_text">{value}</span>  {icon}
+  <div  onClick={onClick}>
+    <div class={className ? `${className} btn` : `btn`} >
+      {value}
     </div>
     {/* <a
       className={className}

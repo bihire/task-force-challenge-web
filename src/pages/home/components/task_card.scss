@@ -1,0 +1,26 @@
+
+.TaskCard {
+    background: #fff;
+    height: 50px;
+    padding: 7px 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 4px 9px -7px rgba(0,0,0,0.92);
+    &_count {
+        font-size: 24px;
+        font-weight: 700;
+        color: #C1CF16;
+    }
+    &_label {
+        font-size: 12px;
+        font-weight: 700;
+    }
+}
+
+// .solid_divider{
+//     margin: 20px 0;
+//     height: 1px;
+//     background: darkgrey;
+// }

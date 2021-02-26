@@ -1,27 +1,56 @@
-import React, { useState, useEffect} from 'react'
-import StoryCard from './components/story_card'
-import HeaderPic from '../../assets/header.svg'
+import React, { useState, useEffect, useRef} from 'react'
+import TaskCard from './components/task_card'
+// import Empty from './components/empty'
 import Modal from '../../components/modal';
-import Register from '../credintials/add_user';
+import AddTask from '../credintials/add_task';
 import { allAction } from '../../redux/action/allUsers/action'
 
-import './home.scss'
+import './landing_page.scss'
 import { connect } from 'react-redux';
 import LandingLayout from '../../components/landingLayout';
+import Header from './components/header';
+import WithTasks from './components/withTasks';
 
 function LandingPage (props) {
         // var subtitle;
-        // const [modalIsOpen, setIsOpen] = useState(false);
-        
+        const [modalIsOpen, setIsOpen] = useState(false);
+    const parentRef = useRef<HTMLDivElement>();
         useEffect(() => {
             // props.fecthUsers();
         }, [])
-        // function changeModal() {
-        //     setIsOpen(!modalIsOpen);
-        // }
+        function openModal() {
+            setIsOpen(true)
+            
+        }
+
+    function closeModal(e) {
+
+        if (parentRef.current.id === e.target.id) {
+            setIsOpen(!modalIsOpen);
+            
+        } else {
+            return;
+        }
+
+    }
 
     return LandingLayout(
-            <div className="MainEntry">
+            <div className="landing_page">
+            <div className="landing_page_header">
+                <Header changeModal={openModal}/>
+            </div>
+            <div className="landing_page_container">
+                <div className="landing_page_container_cards">
+                    <TaskCard />
+                    <TaskCard />
+                    <TaskCard />
+                    <TaskCard />
+                    <TaskCard />
+                </div>
+                <div className="landing_page_container_content">
+                    <WithTasks />
+                </div>
+            </div>
                 {/* <div className="MainEntry">
 
                     <div className="MainEntry_header_image">
@@ -50,7 +79,9 @@ function LandingPage (props) {
                         </div>
                     </div>
                 </a> */}
-                
+            <Modal parentRef={parentRef} show={modalIsOpen} handleClose={closeModal}>
+                <AddTask changeModal={closeModal} />
+            </Modal>
             </div>
         )
     

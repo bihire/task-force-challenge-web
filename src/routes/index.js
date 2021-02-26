@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 import Route from './Route';
 import Error from '../components/error';
 import CredintialPage from '../pages/credintials';
-import HomePage from '../pages/home';
+import HomePage from '../pages/home/index.tsx';
 
 export default function index() {
     return (

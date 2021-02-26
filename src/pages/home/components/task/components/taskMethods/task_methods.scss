@@ -1,0 +1,46 @@
+.TaskMethods {
+    // background: red;
+    width: fit-content;
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+}
+.closeIcon {
+    font-size: 20px;
+    margin: -10px -10px -6px -10px;
+}
+
+.editIcon {
+    font-size: 18px;
+    margin: -10px -10px -5px -10px;
+
+}
+
+.doneBtn {
+    border: 2px solid #1C2834 !important;
+    background: #FFFFFF;
+    color: #000 !important;
+    font-size: 9px;
+    font-weight: 1000 !important;
+    padding: 4px 25px 3px 25px ;
+}
+
+.closeBtn {
+    border: none;
+    background: #F4F5F6 !important;
+    color: #000 !important;
+    font-size: 9px;
+    width: 20px !important;
+    height: 25px !important;
+    font-weight: 1000 !important;
+    // padding: 0px 25px 0px 25px ;
+}
+.editBtn {
+    border: none;
+    background: #F4F5F6 !important;
+    color: #000 !important;
+    font-size: 9px;
+    width: 20px !important;
+    height: 25px !important;
+    font-weight: 1000 !important;
+}
