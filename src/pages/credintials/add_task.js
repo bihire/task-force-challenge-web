@@ -8,6 +8,7 @@ import { addAction } from '../../redux/action/addUser/action'
 import { connect } from 'react-redux';
 import TextArea from '../../components/TextArea';
 import NativeSelects from '../../components/customSelect';
+import ImageUpload from '../../components/ImageUploader';
 
 function AddTask(props) {
     const [email, setEmail] = useState('');
@@ -22,6 +23,17 @@ function AddTask(props) {
     const [passwordError, setPasswordError] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+
+    const [curState, setThisState] = useState({
+        files: [],
+        urls: [],
+        isDragging: false,
+        error: ''
+    });
+    // const [imurls, setImageUrls] = useState([]);
+    // const [imisDragging, setIsDragging] = useState(false);
+    // const [imerror, setErrors] = useState('');
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -100,6 +112,21 @@ function AddTask(props) {
             }
         }
     }
+
+    const setTheState = ({ files, urls, isDragging, errors }) => {
+        // console.log(urls ? urls : _urls)
+        
+        setThisState({
+            urls: urls ? urls : curState.urls,
+            files: files ? files : curState.files,
+            isDragging: isDragging ? isDragging : curState.isDragging,
+            error: error ? error : curState.error,
+        })
+        // setFiles(files ? files : imfiles)
+        // setIsDragging(isDragging ? isDragging : imisDragging)
+        // setErrors(errors ? errors : _error)
+        
+    }
     return (
         <div class="add_task">
             <div class="add_task_card">
@@ -116,6 +143,13 @@ function AddTask(props) {
                         </div>
                     </div>
                 </div>
+                <ImageUpload
+                setState={setTheState}
+                urls={curState.urls}
+                files={curState.files}
+                isDragging={curState.isDragging}
+                error={curState.error}
+                />
                 <div className='add_task_card_image'>
                     <div className='add_task_card_image_title'>
                         Title

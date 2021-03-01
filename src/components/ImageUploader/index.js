@@ -29,7 +29,7 @@ class ImageUpload extends Component {
     handleDrags(e) {
         e.preventDefault();
         e.stopPropagation();
-
+        
         this.props.setState({
             isDragging: true
         })
@@ -67,7 +67,7 @@ class ImageUpload extends Component {
         const files = data.files;
 
         [].forEach.call(files, this.handleFiles);
-
+        
         this.props.setState({
             isDragging: false
         })
@@ -80,7 +80,6 @@ class ImageUpload extends Component {
         reader.onloadend = () => {
 
             var imageUrl = window.URL.createObjectURL(file);
-            console.log(imageUrl);
             this.props.setState({
                 files: [file, ...this.props.files],
                 urls: [imageUrl, ...this.props.urls]
@@ -108,7 +107,7 @@ class ImageUpload extends Component {
                                 <input type="file"
                                     onChange={this.onChange}
                                     accept="image/*"
-                                    multiple
+                                    single
                                 />
                         Drag & drop or click
                     </label>

@@ -5,13 +5,14 @@ import Modal from '../../components/modal';
 import AddTask from '../credintials/add_task';
 import { allAction } from '../../redux/action/allUsers/action'
 
-import './landing_page.scss'
 import { connect } from 'react-redux';
 import LandingLayout from '../../components/landingLayout';
 import Header from './components/header';
 import WithTasks from './components/withTasks';
 
-function LandingPage (props) {
+import './landing_page.scss'
+
+function LandingPage () {
         // var subtitle;
         const [modalIsOpen, setIsOpen] = useState(false);
     const parentRef = useRef<HTMLDivElement>();
@@ -23,9 +24,9 @@ function LandingPage (props) {
             
         }
 
-    function closeModal(e) {
+    function closeModal(e: any) {
 
-        if (parentRef.current.id === e.target.id) {
+        if (parentRef?.current?.id === e.target.id) {
             setIsOpen(!modalIsOpen);
             
         } else {
@@ -86,14 +87,14 @@ function LandingPage (props) {
         )
     
 }
-const mapStateToProps = function (state) {
+const mapStateToProps = function(state: any) {
     return {
         all: state.all,
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    fecthUsers: (data) => dispatch(allAction()),
+const mapDispatchToProps = (dispatch: any) => ({
+    fecthUsers: (data: any) => dispatch(allAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);;
