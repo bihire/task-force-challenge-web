@@ -1,109 +1,123 @@
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
-.uploadInput {
-  background: #fff;
-  width: 300px;
-//   width: fit-content;
-box-sizing: border-box;
-  display: flex;
-  height: fit-content;
-  padding: 7px 0;
-  font-size: 0.8em;
+
+.uploadInput_container {
+	position: relative;
+	// margin-top: 50px;
+	width: 300px;
+	height: 150px;
+	&_title{
+		position: absolute;
+		width: 300px;
+		left: 0;
+		top: 20px;
+		font-weight: 700;
+		font-size: 12px;
+		text-align: center;
+		text-transform: uppercase;
+		color: white;
+		z-index: 1;
+		transition: top .5s ease;
+	}
+	&_overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0);
+		transition: background 0.5s ease;
+	}
+	&:hover &_overlay {
+		display: block;
+		background: rgba(0, 0, 0, .3);
+	}
+	&:hover &_button {
+		opacity: 1;
+	}
+	img {
+		position: absolute;
+		width: 300px;
+		height: 150px;
+		left: 0;
+	}
+	&:hover &_title {
+  		top: 10px;
+	}
+	&_button {
+		position: absolute;
+		width: fit-content;
+		display: flex;
+		left:50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		opacity: 0;
+		gap: 10px;
+		transition: opacity .35s ease;
+		margin-bottom: 30px;
+		&_box {
+                    height: 150px;
+                    position: relative;
+                    width: 90%;
+                    max-width: 300px;
+                    background: #F4F5F6;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+					cursor: pointer;
+                    &_message {
+                        width: 100%;
+                        text-align: center;
+                        font-size: .8em;
+                        color: #495D69;
+                    }
+                }
+		.addPicBtn , .deletePicBtn {
+			border: 2px solid #F4F5F6 !important;
+			background: none;
+			color: #F4F5F6 !important;
+			font-size: 9px;
+			font-weight: 900 !important;
+			padding: 4px 25px 3px 25px ;
+		}
+		.addPicBtn {
+			&:hover {
+				background: rgba(255, 255, 255, 0.7);
+				color: #1C2834 !important;
+				transition: background 0.5s ease;
+			}
+		}
+		.deletePicBtn {
+			border: 2px solid rgb(241, 70, 70) !important;
+			background: none;
+			color: rgb(241, 70, 70) !important;
+			font-size: 9px;
+			font-weight: 900 !important;
+			padding: 4px 25px 3px 25px ;
+			&:hover {
+				background: rgba(241, 70, 70, 0.8);
+				color: #F4F5F6 !important;
+				transition: background 0.5s ease;
+			}
+		}
+	}
+	
+	
+	&:hover &_button {
+  		opacity: 1;
+	}
 }
 
-input[type="file"] {
-    display: none;
-}
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
+.hide_file {
+	position: absolute;
+    z-index: 1000;
+    opacity: 0;
     cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
 }
 
-.imagePreviewContainer {
-	// width: 300%;
-	display: grid;
-	grid-template-columns: 145px 145px ;
-	grid-template-rows: 1fr;
-	grid-gap: 10px;
-	// padding: 10px;
-	// flex: 1 1 100vw;
-	// flex-flow: row wrap;
-}
-
-.previewItem {
-	display: flex;
-	flex-direction: column;
-	margin: 5px 0;
-	padding: 0;
-	// width: 100px;
-	background: #fff;
-	// box-shadow: 1px 2px 5px 0px hsla(0, 0%, 0%, 0.35);
-}
-
-.imagePreview {
-	height: 100px;
-	&_image {
-	  width: 100%;
-	  height: 100%;
-
-	}
-}
-
-.details {
-	padding: 5px 0;
-}
-
-.details h6 {
-	font-size: 10pt;
-	font-weight: 600;
-	// font-weight: normal;
-	color: rgb(121, 110, 110);
-	padding: 0;
-	margin: 0;
-}
-.details_info {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	&_size {
-		color: #999;
-		font-size: 0.8em;
-	}
-}
-
-.details i {
-	cursor: pointer;
-}
-
-.dragDrop {
-	margin-top: 10px;
-	width: 100%;
-	height: 100px;
-	background: hsla(0, 0%, 100%, 0.25);
-	padding: 10px;
-	text-align: center;
-	text-transform: uppercase;
-	color: #ddd;
-	border: 2px dashed #eee;
-}
-
-.dragging {
-	background-color: #fff;
-	color: lightsteelblue;
-}
-
-.dragging i.material-icons {
-	animation: bounce 1s infinite ease-in-out;
-}
-
-.inside {
-	margin-top: 35px;
-}
-
-@keyframes bounce {
-	0% { transform: translateY(0); }
-	50% { transform: translateY(5px); }
-	100% { transform: translateY(0); }
-}

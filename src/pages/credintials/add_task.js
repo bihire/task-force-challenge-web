@@ -26,14 +26,10 @@ function AddTask(props) {
 
 
     const [curState, setThisState] = useState({
-        files: [],
-        urls: [],
-        isDragging: false,
+        file: null,
+        url: null,
         error: ''
     });
-    // const [imurls, setImageUrls] = useState([]);
-    // const [imisDragging, setIsDragging] = useState(false);
-    // const [imerror, setErrors] = useState('');
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -113,13 +109,11 @@ function AddTask(props) {
         }
     }
 
-    const setTheState = ({ files, urls, isDragging, errors }) => {
-        // console.log(urls ? urls : _urls)
+    const setTheState = ({ file, url, errors }) => {
         
         setThisState({
-            urls: urls ? urls : curState.urls,
-            files: files ? files : curState.files,
-            isDragging: isDragging ? isDragging : curState.isDragging,
+            url: url,
+            file: file,
             error: error ? error : curState.error,
         })
         // setFiles(files ? files : imfiles)
@@ -137,16 +131,11 @@ function AddTask(props) {
                     <div className='add_task_card_image_title'>
                         Add image
                     </div>
-                    <div className='add_task_card_image_box'>
-                        <div className='add_task_card_image_box_message'>
-                            Tap to add an image
-                        </div>
-                    </div>
                 </div>
                 <ImageUpload
                 setState={setTheState}
-                urls={curState.urls}
-                files={curState.files}
+                url={curState.url}
+                file={curState.file}
                 isDragging={curState.isDragging}
                 error={curState.error}
                 />

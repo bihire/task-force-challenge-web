@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '../Button';
 
 import './style.scss';
 
@@ -7,82 +8,33 @@ class ImageUpload extends Component {
         super(props);
 
         this.onChange = this.onChange.bind(this);
-        this.handleDrop = this.handleDrop.bind(this);
-        this.handleDragEnter = this.handleDragEnter.bind(this);
-        this.handleDragOver = this.handleDragOver.bind(this);
-        this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleFiles = this.handleFiles.bind(this);
         this.onRemove = this.onRemove.bind(this);
     }
 
-    onRemove(index) {
-        var { files, urls } = this.props;
-        let newFiles = files.filter((file, i) => i !== index);
-        let newUrls = urls.filter((url, i) => i !== index);
-
+    onRemove() {
         this.props.setState({
-            files: newFiles,
-            urls: newUrls
-        })
-    }
-
-    handleDrags(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        this.props.setState({
-            isDragging: true
-        })
-    }
-
-    handleDragEnter(e) {
-        this.handleDrags(e);
-    }
-
-    handleDragOver(e) {
-        this.handleDrags(e);
-    }
-
-    handleDragLeave(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        this.props.setState({
-            isDragging: false
+            file: null,
+            url: null
         })
     }
 
     onChange(e) {
         e.preventDefault()
-        const files = e.target.files;
+        const file = e.target.files[0];
 
-        [].forEach.call(files, this.handleFiles);
-    }
-
-    handleDrop(e) {
-        e.stopPropagation();
-        e.preventDefault();
-
-        const data = e.dataTransfer;
-        const files = data.files;
-
-        [].forEach.call(files, this.handleFiles);
-        
-        this.props.setState({
-            isDragging: false
-        })
+        this.handleFiles(file);
     }
 
     handleFiles(file) {
-
         var reader = new FileReader();
 
         reader.onloadend = () => {
 
             var imageUrl = window.URL.createObjectURL(file);
             this.props.setState({
-                files: [file, ...this.props.files],
-                urls: [imageUrl, ...this.props.urls]
+                file: file,
+                url: imageUrl
             })
         }
 
@@ -90,18 +42,44 @@ class ImageUpload extends Component {
     }
 
     render() {
-        const { urls, files, isDragging } = this.props;
-        const dropClass = isDragging ? "dragDrop dragging" : "dragDrop";
+        const { url, file } = this.props;
 
         return (
             <div>
-                <div className="uploadInput" >
+                {file !== null ? <div class="uploadInput_container">
+                    <img src={url} alt="" />
+                    {/* <p class="uploadInput_container_title">card title</p> */}
+                    <div class="uploadInput_container_overlay"></div>
+                    <div class="uploadInput_container_button">
+                        <div className='uploadInput_container_button_add'>
+                            <Button className="addPicBtn" value="UPDATE" />
+                        </div>
+                        <div className='uploadInput_container_button_delete'>
+                            <Button className="deletePicBtn" value="REMOVE" onClick={this.onRemove}/>
+                        </div>
+                    </div>
+                        
+                    
+                </div>:
+                <div className='uploadInput_container_button_box'>
+                            <div className='uploadInput_container_button_box_message'>
+                            Tap to add an image
+                            <input type="file"
+                                className="hide_file"
+                                onChange={this.onChange}
+                                accept="image/*"
+                                single
+                            />
+                            </div>
+                        </div>}
+                {/* <div className="uploadInput" >
                     
                     <div className={dropClass}
-                        onDrop={this.handleDrop}
-                        onDragOver={this.handleDragOver}
-                        onDragEnter={this.handleDragEnter}
-                        onDragLeave={this.handleDragLeave} >
+                        // onDrop={this.handleDrop}
+                        // onDragOver={this.handleDragOver}
+                        // onDragEnter={this.handleDragEnter}
+                        // onDragLeave={this.handleDragLeave} 
+                        >
                         <div className="inside">
                             <span><label class="custom-file-upload">
                                 <input type="file"
@@ -117,9 +95,9 @@ class ImageUpload extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="invalid_input">{this.props.error}</div>
-                <div className="imagePreviewContainer">
+                {/* <div className="imagePreviewContainer">
                     {
                         urls && (urls.map((url, i) => (
                             <div className="previewItem">
@@ -140,7 +118,7 @@ class ImageUpload extends Component {
                             </div>
                         )))
                     }
-                </div>
+                </div> */}
             </div>
         );
     }
