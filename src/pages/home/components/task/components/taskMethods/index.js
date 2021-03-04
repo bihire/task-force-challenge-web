@@ -10,11 +10,10 @@ const TaskMethods = (user) => {
     return (
             <div className='TaskMethods'>
                 <div className='TaskMethods_edit'>
-                <IconButton className="editBtn" value={<IoPencil className="editIcon" />} /> 
-                
+                    <IconButton className="editBtn" value={<IoPencil className="editIcon" />} /> 
                 </div>
                 <div className='TaskMethods_delete'>
-                <IconButton className="closeBtn" value={<IoClose className="closeIcon" />} /> 
+                    <IconButton className="closeBtn" value={<IoClose className="closeIcon" />} /> 
                 </div>
                 <div className='TaskMethods_done'>
                     <Button className="doneBtn" value="DONE" />

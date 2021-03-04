@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Allerta+Stencil|Baloo|Mitr|Roboto|Sigmar+One&display=swap');
+ @import url('https://fonts.googleapis.com/css?family=Allerta+Stencil|Baloo|Mitr|Roboto|Sigmar+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Manjari&display=swap');
 body {
     margin: 0;
@@ -6,17 +6,11 @@ body {
     background: #fff;
     font-family: 'Roboto', sans-serif;
 }
-a {
+/*a {
     color: #fff;
     text-decoration: none;
 }
 
-/* a:hover 
-{
-     color: red; 
-     text-decoration:none; 
-     cursor:pointer;  
-} */
 .container {
      width: 60%;
     height: fit-content;
@@ -63,7 +57,6 @@ a {
     position: relative;
 }
 .card-form {
-    /* background: #2E3D51; */
     border-radius: 4px;
     border: .7px solid rgb(255, 255, 255);
     box-shadow: 0px 0px 20px -6px rgba(0,0,0,0.92);
@@ -164,7 +157,6 @@ p.forget a{
 }
 
 .submit{
-    /* display: flex; */
     text-align: center;
     margin: auto;
     margin-top: 30px;
@@ -183,7 +175,6 @@ p.forget a{
     background: none;
 }
 .submit_icon{
-    /* background: red; */
     transform: translateY(2px);
 }
 .signInInputs{
@@ -206,7 +197,6 @@ p.forget a{
 .welcome-info {
     text-align: center;
     color: #000;
-    /* padding: 20px; */
 }
 .note {
     font-size: 18px;
@@ -275,4 +265,4 @@ span {
         color: #fff;
     }
   
-}
+} */

@@ -1,18 +1,22 @@
 .TaskMethods {
-    // background: red;
     width: fit-content;
     display: flex;
     gap: 10px;
+    background: blue;
     justify-content: end;
 }
 .closeIcon {
-    font-size: 20px;
-    margin: -10px -10px -6px -10px;
+    font-size: 18px;
+    margin: -7px -10px -4px -10px;
+    
 }
 
 .editIcon {
-    font-size: 18px;
-    margin: -10px -10px -5px -10px;
+    font-size: 16px;
+    margin: -10px -10px -3px -10px;
+    &:hover {
+        color: #FFFFFF;
+    }
 
 }
 
@@ -23,6 +27,10 @@
     font-size: 9px;
     font-weight: 1000 !important;
     padding: 4px 25px 3px 25px ;
+    &:hover {
+        background: #1C2834;
+        color: #FFFFFF !important;
+    }
 }
 
 .closeBtn {
@@ -31,16 +39,31 @@
     color: #000 !important;
     font-size: 9px;
     width: 20px !important;
-    height: 25px !important;
-    font-weight: 1000 !important;
+    height: 23px !important;
+    font-weight: 700 !important;
     // padding: 0px 25px 0px 25px ;
+    &:hover {
+        background: #1C2834 !important;
+        cursor: pointer;
+        .closeIcon {
+            color: #FFFFFF;
+        }
+    }
 }
 .editBtn {
     border: none;
     background: #F4F5F6 !important;
     color: #000 !important;
     font-size: 9px;
+    overflow: hidden;
     width: 20px !important;
-    height: 25px !important;
+    height: 23px !important;
     font-weight: 1000 !important;
+    &:hover {
+        background: #1C2834 !important;
+        cursor: pointer;
+        .editIcon {
+            color: #FFFFFF;
+        }
+    }
 }

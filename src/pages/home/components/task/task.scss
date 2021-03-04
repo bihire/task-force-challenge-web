@@ -66,12 +66,12 @@
 
 .resp-table-row:hover .table-body-cell {
   background: rgba(208, 246, 239, 0.4);
-  cursor: pointer;
+  cursor: default;
 }
 
-.resp-table-row:hover .table-body-cell:not(#date) {
-  color: #0015FF;
-}
+// .resp-table-row:hover .table-body-cell:not(#date) {
+//   color: #0015FF;
+// }
 
 .resp-table-row:hover #icon_clip .icon_clip {
   filter: invert(11%) sepia(100%) saturate(6343%) hue-rotate(242deg) brightness(91%) contrast(133%);

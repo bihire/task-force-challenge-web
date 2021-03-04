@@ -42,7 +42,7 @@ class ImageUpload extends Component {
     }
 
     render() {
-        const { url, file } = this.props;
+        const { url, file, error } = this.props;
 
         return (
             <div>
@@ -72,53 +72,11 @@ class ImageUpload extends Component {
                             />
                             </div>
                         </div>}
-                {/* <div className="uploadInput" >
-                    
-                    <div className={dropClass}
-                        // onDrop={this.handleDrop}
-                        // onDragOver={this.handleDragOver}
-                        // onDragEnter={this.handleDragEnter}
-                        // onDragLeave={this.handleDragLeave} 
-                        >
-                        <div className="inside">
-                            <span><label class="custom-file-upload">
-                                <input type="file"
-                                    onChange={this.onChange}
-                                    accept="image/*"
-                                    single
-                                />
-                        Drag & drop or click
-                    </label>
-                        </span>
-                            <div>
-                                <i className="material-icons">file_upload</i>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-                <div className="invalid_input">{this.props.error}</div>
-                {/* <div className="imagePreviewContainer">
-                    {
-                        urls && (urls.map((url, i) => (
-                            <div className="previewItem">
-                                <div className="imagePreview">
-                                    <img className="imagePreview_image" src={url} />
-
-                                </div>
-                                <div className="details">
-                                    <h6>{files[i].name}</h6>
-                                    <div className="details_info">
-                                        <div className="details_info_size"> {files[i].size.toLocaleString()} KBs</div>
-                                        <div className="details_info_delete"><i className="material-icons"
-                                            onClick={() => this.onRemove(i)}>delete</i>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        )))
-                    }
-                </div> */}
+                
+                <div className="invalid_input">
+                    <span className="invalid_input_error">{error}</span>
+                </div>
+                
             </div>
         );
     }

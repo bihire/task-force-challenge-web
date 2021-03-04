@@ -49,8 +49,15 @@
                     justify-content: end;
                 }
             }
-            &_task_title{
+            &_taskTitle{
                 height: fit-content;
+                margin-bottom: 10px;
+            }
+            &_taskDescription{
+                margin-bottom: 10px;
+            }
+            &_ImageBox {
+                margin-bottom: 10px;
             }
             &_task_select{
                 background: #F4F5F6;
