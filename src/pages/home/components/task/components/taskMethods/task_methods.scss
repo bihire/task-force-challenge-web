@@ -1,8 +1,12 @@
 .TaskMethods {
+    transform: translate(0, 5px);
     width: fit-content;
     display: flex;
     gap: 10px;
-    background: blue;
+    // height: 24px;
+    // overflow: hidden;
+    // margin-top: 17px;
+    // margin-bottom: -17px;
     justify-content: end;
 }
 .closeIcon {
@@ -58,7 +62,7 @@
     overflow: hidden;
     width: 20px !important;
     height: 23px !important;
-    font-weight: 1000 !important;
+    font-weight: 700 !important;
     &:hover {
         background: #1C2834 !important;
         cursor: pointer;

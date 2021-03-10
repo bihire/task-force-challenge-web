@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './form.scss'
 import InputField from '../../components/InputField'
 import Button from '../../components/Button'
-import { addAction } from '../../redux/action/addUser/action'
+import { addAction } from '../../redux/action/addTask/action'
 import { connect } from 'react-redux';
 import TextArea from '../../components/TextArea';
 import NativeSelects from '../../components/customSelect';
@@ -68,7 +68,9 @@ function AddTask(props) {
         if (!curState.url) setTheState({error: 'image is required', file: null, url: null})
         if (curState.url !== null) setThisState({ error: '', file: curState.file, url: curState.url})
         if (isDescriptionValid && isTitleValid && curState.url)  {
-            console.log({ title, description, priority, url: curState.url })
+            // console.log({ title, description, priority, url: curState.url })
+            props.AddTask({ title, description, priority, url: curState.url });
+            // console.log(props)
         }
 
         // if (isTitleValid && isPasswordValid) {
@@ -173,14 +175,14 @@ function AddTask(props) {
     );
 }
 
-const mapStateToProps = function (state) {
-    return {
-        all: state.all,
-    }
-}
+// const mapStateToProps = function (state) {
+//     return {
+//         all: state.all,
+//     }
+// }
 
 const mapDispatchToProps = (dispatch) => ({
-    addUser: (data) => dispatch(addAction(data)),
+    AddTask: (data) => dispatch(addAction(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
+export default connect(null, mapDispatchToProps)(AddTask);
