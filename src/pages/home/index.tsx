@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef} from 'react'
 import TaskCard from './components/task_card'
-// import Empty from './components/empty'
+import Empty from './components/empty'
 import Modal from '../../components/modal';
 import AddTask from '../credintials/add_task';
-import { allAction } from '../../redux/action/allUsers/action'
+import { allAction } from '../../redux/action/allTasks/action'
 
 import { connect } from 'react-redux';
 import LandingLayout from '../../components/landingLayout';
@@ -12,12 +12,11 @@ import WithTasks from './components/withTasks';
 
 import './landing_page.scss'
 
-function LandingPage () {
-        // var subtitle;
+function LandingPage (props: any) {
         const [modalIsOpen, setIsOpen] = useState(false);
-    const parentRef = useRef<HTMLDivElement>();
+        const parentRef = useRef<HTMLDivElement>();
         useEffect(() => {
-            // props.fecthUsers();
+            props.FetchTasks();
         }, [])
         function openModal() {
             setIsOpen(true)
@@ -49,7 +48,7 @@ function LandingPage () {
                     <TaskCard />
                 </div>
                 <div className="landing_page_container_content">
-                    <WithTasks />
+                    {(props.all.all === null || props.all.all === []) ? <Empty /> : <WithTasks all={props.all.all}/>}
                 </div>
             </div>
                 {/* <div className="MainEntry">
@@ -94,7 +93,7 @@ const mapStateToProps = function(state: any) {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-    fecthUsers: (data: any) => dispatch(allAction()),
+    FetchTasks: () => dispatch(allAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);;

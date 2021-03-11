@@ -175,11 +175,7 @@ function AddTask(props) {
     );
 }
 
-// const mapStateToProps = function (state) {
-//     return {
-//         all: state.all,
-//     }
-// }
+
 
 const mapDispatchToProps = (dispatch) => ({
     AddTask: (data) => dispatch(addAction(data)),

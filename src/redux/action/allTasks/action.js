@@ -21,9 +21,10 @@ export const allError = (payload) => ({
 export const allAction = () => async (dispatch) => {
     dispatch(allStart());
     try {
-        // const { email, password } = data;
-        const response = await axiosCall.get('/auth/users');
-        dispatch(successAll(response.data.data))
+        const task = await localStorage.getItem('tasks_container');
+        if (task !== null) {
+            dispatch(successAll(JSON.parse(task)))
+        }
         
     } catch (error) {
         swal({

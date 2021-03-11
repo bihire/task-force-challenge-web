@@ -1,7 +1,7 @@
 // import jwtDecode from 'jwt-decode';
 import swal from 'sweetalert';
 import { ADD_SUCCESS, ADD_FAILURE, ADD_START } from './action_type';
-import { ALL_SUCCESS } from '../allUsers/action_type';
+import { ALL_SUCCESS } from '../allTasks/action_type';
 // import { axiosCall } from '../../../services/httpservice';
 
 export const addStart = (payload) => ({
@@ -28,25 +28,13 @@ export const addError = (payload) => ({
 export const addAction = (data) => async (dispatch) => {
     dispatch(addStart());
     try {
-        
-        // const { email, password } = data;
-        // const response = await axiosCall.post('/auth/signup', {
-        //     email: data.email,
-        //     phoneNumber: data.phone_number,
-        //     firstName: data.first_name,
-        //     lastName: data.last_name,
-        //     password: data.password,
-        //     confirmPassword: data.confirm_password
-        // });
-        // console.log('bro')
-        // const newData = JSON.stringify([{ id: 1, ...data }]);
-        // await localStorage.setItem('tasks_container', newData)
         const task = await localStorage.getItem('tasks_container');
+        const date = new Date()
         if (task === null) {
-            await localStorage.setItem('tasks_container', JSON.stringify([{ id: 1, ...data }]))
+            await localStorage.setItem('tasks_container', JSON.stringify([{ id: 1, ...data, created_at: date, updated_at: date, done: false}]));
         } else {
             const tasks = JSON.parse(task);
-            await localStorage.setItem('tasks_container', JSON.stringify([{id: tasks.length + 1, ...data }, ...tasks]))
+            await localStorage.setItem('tasks_container', JSON.stringify([{ id: tasks.length + 1, ...data, created_at: date, updated_at: date, done: false }, ...tasks]))
         }
          
             

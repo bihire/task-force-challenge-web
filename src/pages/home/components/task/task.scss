@@ -12,10 +12,10 @@
   text-align: left;
   border-collapse: collapse;
 }
-#resp-table-cation, #resp-table-header, #resp-table-body {
-  border-bottom: 2px solid rgba(35, 206, 236, 0.4);
+// #resp-table-cation, #resp-table-header, #resp-table-body {
+//   border-bottom: 2px solid rgba(35, 206, 236, 0.4);
   
-}
+// }
 
 #resp-table #resp-table-body .resp-table-row #date {
   font-weight: 700;
@@ -113,6 +113,10 @@ display: table-row-group;
 
 .resp-table-row{
 display: table-row;
+}
+
+.dim-row-opacity {
+  opacity: .3;
 }
 .table-body-cell{
 display: table-cell;

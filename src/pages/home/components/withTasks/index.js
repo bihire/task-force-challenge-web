@@ -3,15 +3,15 @@ import Task from '../task'
 
 import './with_tasks.scss'
 
-const WithTasks = (user) => {
+const WithTasks = ({all}) => {
     return (
         <div>
             <div className='WithTasks'>
                 <div className='WithTasks_title'>
-                    24 Tasks
+                   {all.length} Tasks
                 </div>
                 <div className='WithTasks_content'>
-                    <Task />
+                    <Task all={all}/>
                 </div>
             </div>
         </div>

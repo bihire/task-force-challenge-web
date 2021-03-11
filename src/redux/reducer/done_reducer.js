@@ -2,39 +2,34 @@
 
 const initialState = {
     isLoading: false,
-    all: [],
+    id: null,
     error: null,
 };
 
-const allUsers = (state = initialState, action) => {
+const setTaskDone = (state = initialState, action) => {
     switch (action.type) {
-        case 'ALL_START': {
+        case 'DONE_START': {
             return {
                 ...state,
                 isLoading: true,
+                id: action.payload
             };
         }
-        case 'ALL_SUCCESS': {
+        case 'DONE_SUCCESS': {
+
             return {
                 ...state,
-                all: [...action.payload, ...state.all ],
                 error: null,
                 isLoading: false,
+                id: null
             };
         }
-        case 'UPDATE_SUCCESS': {
-            return {
-                ...state,
-                all: action.payload,
-                error: null,
-                isLoading: false,
-            };
-        }
-        case 'ALL_ERROR': {
+        case 'DONE_ERROR': {
             return {
                 ...state,
                 error: action.error,
                 isLoading: false,
+                id: null
             };
         }
         default: {
@@ -44,4 +39,4 @@ const allUsers = (state = initialState, action) => {
 };
 
 
-export default allUsers;
+export default setTaskDone;

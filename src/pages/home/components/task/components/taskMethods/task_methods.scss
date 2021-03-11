@@ -1,13 +1,17 @@
 .TaskMethods {
-    transform: translate(0, 5px);
-    width: fit-content;
+    // transform: translate(0, 5px);
+    width: 100%;
     display: flex;
     gap: 10px;
+    // background: red;
     // height: 24px;
     // overflow: hidden;
     // margin-top: 17px;
     // margin-bottom: -17px;
     justify-content: end;
+    .display_none {
+        display: none;
+    }
 }
 .closeIcon {
     font-size: 18px;
@@ -17,7 +21,7 @@
 
 .editIcon {
     font-size: 16px;
-    margin: -10px -10px -3px -10px;
+    margin: -7px -10px -4px -10px;
     &:hover {
         color: #FFFFFF;
     }
@@ -59,7 +63,6 @@
     background: #F4F5F6 !important;
     color: #000 !important;
     font-size: 9px;
-    overflow: hidden;
     width: 20px !important;
     height: 23px !important;
     font-weight: 700 !important;
