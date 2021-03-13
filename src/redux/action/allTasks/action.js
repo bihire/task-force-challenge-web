@@ -21,20 +21,24 @@ export const allError = (payload) => ({
 export const allAction = () => async (dispatch) => {
     dispatch(allStart());
     try {
-        const task = await localStorage.getItem('tasks_container');
+        let task = await localStorage.getItem('tasks_container');
+
         if (task !== null) {
+            dispatch(successAll(JSON.parse(task)))
+        } else {
+            task = await localStorage.setItem('tasks_container', JSON.stringify([]))
             dispatch(successAll(JSON.parse(task)))
         }
         
     } catch (error) {
         swal({
             title: 'error fetching',
-            text: `${error.response.data.message}`,
+            text: `error`,
             icon: 'error',
             timer: 3000,
             buttons: false,
         });
-        return dispatch(allError(error.response.data));
+        return dispatch(allError('error bro'));
     }
 };
 // export default {

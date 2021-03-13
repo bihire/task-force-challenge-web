@@ -107,3 +107,17 @@
       transform: translate(-50%, -40%) rotate(90deg);
 
 }
+
+.modal-main-content{
+    overflow: hidden;
+  outline: none;
+  border-radius: 5px !important;
+  position:fixed;
+  width: 90%;
+  max-width: 600px;
+  height: 90%;
+  max-height: 900px;
+//   top:50%;
+//   left:50%;
+//   transform: translate(-50%,-50%);
+}

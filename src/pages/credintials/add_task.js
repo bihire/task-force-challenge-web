@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './form.scss'
 import InputField from '../../components/InputField'
 import Button from '../../components/Button'
@@ -8,7 +8,7 @@ import TextArea from '../../components/TextArea';
 import NativeSelects from '../../components/customSelect';
 import ImageUpload from '../../components/ImageUploader';
 
-function AddTask(props) {
+function AddTask({isEdit, AddTask, changeModal,  }) {
     const [title, setTitle] = useState('');
     const [titleError, setTitleError] = useState('');
     const [priority, setPriority] = useState('low');
@@ -17,12 +17,32 @@ function AddTask(props) {
     const [isTitleValid, setIsTitleValid] = useState(false);
     const [isDescriptionValid, setIsDescriptionValid] = useState(false);
 
-
+    
     const [curState, setThisState] = useState({
         file: null,
         url: null,
         error: ''
     });
+    useEffect(() => {
+        if(isEdit.edit) {
+            const taskStr = localStorage.getItem('tasks_container');
+            let tasks = JSON.parse(taskStr)
+            const match = tasks.findIndex((i) => i.id === isEdit.id)
+            setTitle(tasks[match].title)
+            setDescription(tasks[match].description)
+            setPriority(tasks[match].priority)
+            setThisState({
+                file: null,
+                url: tasks[match].url,
+                error: ''
+            })
+
+            // tasks.splice(match, 1)
+            // await localStorage.setItem('tasks_container', JSON.stringify(tasks));
+            // dispatch(successdelete)
+            // dispatch(updateAll(tasks))
+        }
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -68,27 +88,9 @@ function AddTask(props) {
         if (!curState.url) setTheState({error: 'image is required', file: null, url: null})
         if (curState.url !== null) setThisState({ error: '', file: curState.file, url: curState.url})
         if (isDescriptionValid && isTitleValid && curState.url)  {
-            // console.log({ title, description, priority, url: curState.url })
-            props.AddTask({ title, description, priority, url: curState.url });
-            // console.log(props)
+            AddTask({ title, description, priority, url: curState.url });
+            changeModal();
         }
-
-        // if (isTitleValid && isPasswordValid) {
-        //     await props.addUser({
-        //         email,
-        //         password,
-        //         title,
-        //         last_name,
-        //         phone_number,
-        //         confirm_password
-
-        //     });
-        //     if (!props.all.loading && props.all.error === null) {
-        //         // setEmail('')
-        //         // setPassword('')
-        //         props.changeModal();
-        //     }
-        // }
     }
 
     const setTheState = ({ file, url, error }) => {
@@ -157,7 +159,7 @@ function AddTask(props) {
                         Priority
                     </div>
                     <div className='add_task_card_task_select'>
-                        <NativeSelects setPriority={setPriority} />
+                        <NativeSelects curPriority={priority} setPriority={setPriority} />
                     </div>
                 </div>
                 <div className='add_task_card_image_submit'>

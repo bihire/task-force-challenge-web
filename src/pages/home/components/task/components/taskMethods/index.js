@@ -1,32 +1,34 @@
 import React, { Component, useState } from 'react';
 import { IoClose, IoPencil } from "react-icons/io5";
 import { doneAction } from '../../../../../../redux/action/setDoneTask/action'
+import { deleteAction } from '../../../../../../redux/action/deleteTask/action'
 import Button from '../../../../../../components/Button'
 import IconButton from '../../../../../../components/iconBtn'
 import SimpleDialog from '../../../../../../components/dialogue'
 
 import './task_methods.scss'
 import { connect } from 'react-redux';
-const emails = ['username@gmail.com', 'user02@gmail.com'];
 
-const TaskMethods = ({done,id, SetDone}) => {
+const TaskMethods = ({handleOpenEdit, done,id, SetDone, DeleteTask}) => {
     const [open, setOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState(emails[1]);
 
     const handleClickOpen = () => {
-        console.log('bro')
         setOpen(true);
     };
 
-    const handleClose = (value) => {
+    const handleClose = () => {
         setOpen(false);
-        setSelectedValue(value);
     };
+
+    const handleDeleteAction = () => {
+        DeleteTask(id)
+        setOpen(false);
+    }
     return (
         <div>
             <div className='TaskMethods'>
                 <div className={done === false ? 'TaskMethods_edit' : 'TaskMethods_edit display_none'}>
-                    <IconButton className="editBtn" value={<IoPencil className="editIcon" />} />
+                    <IconButton className="editBtn" onClick={()=> handleOpenEdit(id)} value={<IoPencil className="editIcon" />} />
                 </div>
                 <div className='TaskMethods_delete'>
                     <IconButton className="closeBtn" value={<IoClose className="closeIcon" />} onClick={handleClickOpen} />
@@ -35,7 +37,7 @@ const TaskMethods = ({done,id, SetDone}) => {
                     <Button className="doneBtn" value="DONE" onClick={() => SetDone(id)} />
                 </div>
             </div>
-            <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+            <SimpleDialog handleAction={handleDeleteAction} open={open} onClose={handleClose} />
         </div>
             
 
@@ -51,6 +53,7 @@ const TaskMethods = ({done,id, SetDone}) => {
 
 const mapDispatchToProps = (dispatch) => ({
     SetDone: (data) => dispatch(doneAction(data)),
+    DeleteTask: (data) => dispatch(deleteAction(data)),
 });
 
 export default connect(null, mapDispatchToProps)(TaskMethods);

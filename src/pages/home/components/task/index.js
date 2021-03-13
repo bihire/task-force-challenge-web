@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import userData from './usersArray.json'
+import moment from 'moment'
 
 import rightDateFormat from './rightDateFormat';
 
@@ -8,8 +9,7 @@ import TaskMethods from './components/taskMethods';
 import Category from './components/category';
 import { connect } from 'react-redux';
 
-const Task = ({all},task) => {
-    
+const Task = ({handleOpenEdit, all}) => {
     return (
         
             <div className='Task'>
@@ -24,9 +24,9 @@ const Task = ({all},task) => {
                                 <div className='table-body-cell' id='title'>{row.description}</div>
                                 <div className='table-body-cell' id='bro-fg'><Category value={row.priority} done={row.done}/></div>
                                 
-                                <div className='table-body-cell' id='to'>Create {row.created_at}</div>
+                                <div className='table-body-cell' id='to'>Created {row.created_at}</div>
                                 <div className='table-body-cell' id='to'>Modified {row.updated_at}</div>
-                                <div className='table-body-cell' id='date'><TaskMethods done={row.done} id={row.id} /></div>
+                                <div className='table-body-cell' id='date'><TaskMethods handleOpenEdit={handleOpenEdit} done={row.done} id={row.id} /></div>
                             </div>
                         ))}
                     </div>

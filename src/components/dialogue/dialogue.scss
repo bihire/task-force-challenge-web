@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&family=Roboto&display=swap');
+
+.dialogue_container {
+    padding: 35px 35px;
+    &_title {
+        font-family: 'Merriweather Sans', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        color: #0C0D0D;
+    }
+    &_description {
+        max-width: 270px;
+        padding: 15px 0;
+        font-family: 'Roboto', sans-serif;
+        font-size: .8em;
+        font-weight: 600;
+        color: #495D69;
+    }
+    &_methods {
+        margin-top: 20px;
+        display: flex;
+        &_delete {
+            width: calc(50%);
+            &_button {
+                font-size: 12px;
+                font-weight: 600;
+            }
+        }
+        &_cancel {
+            width: calc(50%);
+            display: flex;
+            flex-direction: column;
+            
+            justify-items: center;
+            justify-content: center;
+            &_button {
+                cursor: pointer;
+                font-size: .9em;
+                font-weight: 500;
+                margin: auto;
+                width: fit-content;
+            }
+        }
+    }
+}

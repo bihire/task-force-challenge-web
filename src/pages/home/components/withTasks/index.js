@@ -3,7 +3,7 @@ import Task from '../task'
 
 import './with_tasks.scss'
 
-const WithTasks = ({all}) => {
+const WithTasks = ({handleOpenEdit, all}) => {
     return (
         <div>
             <div className='WithTasks'>
@@ -11,7 +11,7 @@ const WithTasks = ({all}) => {
                    {all.length} Tasks
                 </div>
                 <div className='WithTasks_content'>
-                    <Task all={all}/>
+                    <Task handleOpenEdit={handleOpenEdit} all={all}/>
                 </div>
             </div>
         </div>

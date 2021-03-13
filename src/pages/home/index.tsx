@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect} from 'react'
 import TaskCard from './components/task_card'
 import Empty from './components/empty'
-import Modal from '../../components/modal';
 import AddTask from '../credintials/add_task';
 import { allAction } from '../../redux/action/allTasks/action'
 
@@ -12,32 +11,54 @@ import WithTasks from './components/withTasks';
 
 import './landing_page.scss'
 
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+const useStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        outline: 'none',
+        border: 'none',
+    },
+    paper: {
+        // backgroundColor: theme.palette.background.paper,
+        outline: 'none',
+        border: 'none',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
+
 function LandingPage (props: any) {
-        const [modalIsOpen, setIsOpen] = useState(false);
-        const parentRef = useRef<HTMLDivElement>();
         useEffect(() => {
             props.FetchTasks();
         }, [])
-        function openModal() {
-            setIsOpen(true)
-            
-        }
 
-    function closeModal(e: any) {
+    const classes = useStyles();
+    const [open, setOpen] = useState(false);
+    const [isEdit, setIsEdit] = useState({edit: false, id: null});
 
-        if (parentRef?.current?.id === e.target.id) {
-            setIsOpen(!modalIsOpen);
-            
-        } else {
-            return;
-        }
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
-    }
+    const handleOpenEdit = (value: any) => {
+        setOpen(true);
+        setIsEdit({edit: true, id: value});
+    };
 
+    const handleClose = () => {
+        setOpen(false);
+        setIsEdit({ edit: false, id: null });
+    };
     return LandingLayout(
             <div className="landing_page">
             <div className="landing_page_header">
-                <Header changeModal={openModal}/>
+                <Header changeModal={handleOpen}/>
             </div>
             <div className="landing_page_container">
                 <div className="landing_page_container_cards">
@@ -48,39 +69,27 @@ function LandingPage (props: any) {
                     <TaskCard />
                 </div>
                 <div className="landing_page_container_content">
-                    {(props.all.all === null || props.all.all === []) ? <Empty /> : <WithTasks all={props.all.all}/>}
+                    {(props.all.all === null || props.all.all.length === 0) ? <Empty /> : <WithTasks handleOpenEdit={handleOpenEdit} all={props.all.all}/>}
                 </div>
             </div>
-                {/* <div className="MainEntry">
 
-                    <div className="MainEntry_header_image">
-                        <img src={HeaderPic} alter="header pic" height="200" width="200"  repeat/>
-
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div className="modal-main-content">
+                        <AddTask isEdit={isEdit} changeModal={handleClose} />
                     </div>
-                    <div className="MainEntry_container">
-                        <p className="MainEntry_container_title">Available users</p>
-                        <div className="MainEntry_container_story_Container">
-                            {props.all.all.map((index, idx) => {
-                                return <StoryCard user={props.all.all[idx]}/>
-                            })}
-                            
-
-                        </div>
-                    </div>
-                </div>
-                <Modal show={modalIsOpen} handleClose={changeModal}>
-                    <Register changeModal={changeModal}/>
-                </Modal>
-                <a href="#" class="float" onClick={changeModal}>
-                    <div className="float_div">
-                        <div className='float_div_container'>
-                            <span className={modalIsOpen ? 'float_div_container_icon float_div_container_icon_close' : 'float_div_container_icon'}></span>
-                            
-                        </div>
-                    </div>
-                </a> */}
-            <Modal parentRef={parentRef} show={modalIsOpen} handleClose={closeModal}>
-                <AddTask changeModal={closeModal} />
+                </Fade>
             </Modal>
             </div>
         )

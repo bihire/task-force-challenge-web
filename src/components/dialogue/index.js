@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
 import { blue } from '@material-ui/core/colors';
+
+import './dialogue.scss'
+import Button from '../Button';
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
@@ -22,40 +17,33 @@ const useStyles = makeStyles({
 
 export default function SimpleDialog(props) {
     const classes = useStyles();
-    const { onClose, selectedValue, open } = props;
+    const { onClose, handleAction, open } = props;
 
     const handleClose = () => {
-        onClose(selectedValue);
+        onClose();
     };
 
-    const handleListItemClick = (value) => {
-        onClose(value);
-    };
+    // const handleAction = (value) => {
+    //     handleAction(value);
+    // };
 
     return (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-            <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-            <List>
-                {emails.map((email) => (
-                    <ListItem button onClick={() => handleListItemClick(email)} key={email}>
-                        <ListItemAvatar>
-                            <Avatar className={classes.avatar}>
-                                <PersonIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={email} />
-                    </ListItem>
-                ))}
-
-                <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-                    <ListItemAvatar>
-                        <Avatar>
-                            <AddIcon />
-                        </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="Add account" />
-                </ListItem>
-            </List>
+            <div className="dialogue_container" >
+                <div className="dialogue_container_title">Are you sure?</div>
+                <div className="dialogue_container_description">If you delete this task you wont be able to reverse this action</div>
+                <div className="dialogue_container_methods">
+                    <div className="dialogue_container_methods_delete">
+                        <Button onClick={handleAction} className="dialogue_container_methods_delete_button" value="DELETE TASK"></Button>
+                    </div>
+                    <div className="dialogue_container_methods_cancel">
+                        <div onClick={handleClose} className="dialogue_container_methods_cancel_button">
+                            cancel
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </Dialog>
     );
 }
